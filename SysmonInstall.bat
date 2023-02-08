@@ -17,7 +17,7 @@ pushd "C:\ProgramData\sysmon\"
 echo [+] Removing previous install...
 NET STOP sysmon64
 sysmon64.exe -u force
-timeout /t 10
+timeout /t 2
 echo [+] Downloading Sysmon...
 @powershell (new-object System.Net.WebClient).DownloadFile('https://live.sysinternals.com/Sysmon64.exe','C:\ProgramData\sysmon\sysmon64.exe')"
 echo [+] Downloading Sysmon config...
@@ -28,5 +28,5 @@ sc failure Sysmon64 actions= restart/10000/restart/10000// reset= 120
 echo [+] Sysmon Successfully Installed!
 ::echo [+] Creating Auto Update Task set to Daily..
 ::SchTasks /Create /RU SYSTEM /RL HIGHEST /SC DAILY /TN Update_Sysmon_Rules /TR C:\ProgramData\sysmon\Auto_Update.bat /F /ST %tasktime%
-timeout /t 10
+timeout /t 5
 exit
