@@ -15,6 +15,7 @@ set tasktime=%hour%:%minute%
 mkdir C:\ProgramData\sysmon
 pushd "C:\ProgramData\sysmon\"
 echo [+] Removing previous install...
+NET STOP sysmon64
 sysmon64.exe -u force
 timeout /t 10
 echo [+] Downloading Sysmon...
