@@ -14,6 +14,9 @@ if "%minute:~1,1%"=="" set minute=0%minute%
 set tasktime=%hour%:%minute%
 mkdir C:\ProgramData\sysmon
 pushd "C:\ProgramData\sysmon\"
+echo [+] Removing previous install...
+sysmon64.exe -u force
+timeout /t 10
 echo [+] Downloading Sysmon...
 @powershell (new-object System.Net.WebClient).DownloadFile('https://live.sysinternals.com/Sysmon64.exe','C:\ProgramData\sysmon\sysmon64.exe')"
 echo [+] Downloading Sysmon config...
